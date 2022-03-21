@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,15 +25,18 @@ public class LoginController {
         return "registro";
    }
 
-
    @PostMapping("/auth/registro")
-   public String registroUsuario(@Validated @ModelAttribute Usuario usuario, BindingResult result, Model model) {
+   //metodo que recibe un objeto tipo usuario un modelo tipo model y una pequeña validacion con BindingResult en result
+   public String registroUsuario(@ModelAttribute Usuario usuario, BindingResult result, Model model) {
+       //BindingResult result guarda una validacion si existe un error con el metodo hasErrors entonces
        if(result.hasErrors()) {
+           //retorno una redireccion al endPoint de registro
            return "redirect:/auth/registro";
        }else{
-           model.addAttribute("usuario", usuarioServicio.registrar(usuario));
+           //si todo sale bien guardo el registrol agregandole al modelo "usuario" el nuevo registro
+           model.addAttribute("usuario", usuarioServicio.registrarUsuario(usuario));
        }
+       //despues de agregar ok genero una redireccion al login
        return "redirect:/auth/login";
    }
-    
 }

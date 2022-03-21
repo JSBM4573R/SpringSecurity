@@ -33,6 +33,7 @@ public class Usuario implements Serializable{
     @Column(name = "correo_usuario", nullable = false, length = 50)
     private String correo;
     @NonNull
-    @Column(name = "password_usuario", nullable = false, length = 30)
+    //como la contraseña es encriptada entonces tiene que tener un length de >= 60
+    @Column(name = "password_usuario", nullable = false, length = 65)
     private String password;
 }

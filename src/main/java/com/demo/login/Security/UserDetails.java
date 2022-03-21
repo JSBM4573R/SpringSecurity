@@ -11,12 +11,21 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.stereotype.Service;
 
+/**
+ * clase que implementa UserDetailsService el cual contiene un metodo loadUserByUsername
+ * para poder realizar validaciones y usar metodos UserBuilder para construir un nuevo Usuario
+ * se declara con la etiqueta @Service porque implementamos un servicio de UserDetails.
+ */
 @Service
 public class UserDetails implements UserDetailsService {
 
     @Autowired
     private UsuarioCrudRepoDAO usuarioCrudRepoDAO;
 
+    /**
+     * sobre-escritura del metodo loadUserByUsername el cual recibe el String correo
+     * ademas lanza una excepcion su el correo no fue encontrado con throw new UsernameNotFoundException
+     */
     @Override
     public org.springframework.security.core.userdetails.UserDetails loadUserByUsername(String correo) throws UsernameNotFoundException {
         //Declaro un objeto de tipo usuario en el cual almaceno el metodo  buscarNombre(nombreUsuario)
@@ -26,7 +35,6 @@ public class UserDetails implements UserDetailsService {
 
         //si el usuario es diferente a null es decir si existe entonces
         if(usuario != null) {
-
             //builder = al nombre de usuario ingresado
             builder = User.withUsername(correo);
             //habilitamos el builder con el metodo .disabled(false)
@@ -36,7 +44,7 @@ public class UserDetails implements UserDetailsService {
             //le pasamos una autoridad ROLE_USER 
             builder.authorities(new SimpleGrantedAuthority("ROLE_USER"));
         }else{
-            //lanzo exepcion nueva llamada UsernameNotFoundException(msg)
+            //lanzo exepcion nueva con UsernameNotFoundException(msg)
             throw new UsernameNotFoundException("Usuario no encontrado");
         }
 

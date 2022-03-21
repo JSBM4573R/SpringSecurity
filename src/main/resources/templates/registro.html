@@ -1,7 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head th:replace="layouts/base-layout::head"></head>
-<body>
-    
+<head th:replace="layouts/base-layout::head">
+</head>
+<body style="max-width: 450px; margin: auto; margin-top: 150px;">
+    <form th:action="@{/auth/registro}"th:object="${usuario}" method="POST">
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input type="text" class="form-control" aria-describedby="emailHelp" th:field="*{nombre}"/>
+          <!-- <small th:if="${#fields.hasErrors('nombre')}"th:errors="*(nombre)"></small> -->
+          <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+        </div>
+        <div class="mb-3">
+          <label for="correo" class="form-label">Correo</label>
+          <input type="email" class="form-control" th:field="*{correo}"/>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" th:field="*{password}"/>
+          </div>
+        <input type="submit" class="btn btn-primary" value="Continuar"></input>
+    </form>
 </body>
 </html>
