@@ -1,22 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layouts/base-layout::head">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body style="max-width: 450px; margin: auto; margin-top: 150px;">
     <form th:action="@{/auth/registro}"th:object="${usuario}" method="POST">
         <div class="mb-3">
           <label for="nombre" class="form-label">Nombre</label>
-          <input type="text" class="form-control" aria-describedby="emailHelp" th:field="*{nombre}"/>
+          <input type="text" class="form-control" aria-describedby="emailHelp" th:field="*{nombre}" required autofocus="autofocus">
           <!-- <small th:if="${#fields.hasErrors('nombre')}"th:errors="*(nombre)"></small> -->
           <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
         </div>
         <div class="mb-3">
           <label for="correo" class="form-label">Correo</label>
-          <input type="email" class="form-control" th:field="*{correo}"/>
+          <input type="email" class="form-control" th:field="*{correo}" required autofocus="autofocus">
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" th:field="*{password}"/>
+            <input type="password" class="form-control" th:field="*{password}" required autofocus="autofocus">
           </div>
         <input type="submit" class="btn btn-primary" value="Continuar"></input>
     </form>

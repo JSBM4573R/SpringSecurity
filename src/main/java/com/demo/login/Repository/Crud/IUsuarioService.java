@@ -9,4 +9,5 @@ public interface IUsuarioService {
     //Creo un metodo con finBy de Spring y el nombre del atributo
     //tener en cuenta que el nombre del metodo tiene que ser en CamelCase
     public Usuario findByCorreo(String correo);
+    public Usuario findByNombre(String nombre);
 }

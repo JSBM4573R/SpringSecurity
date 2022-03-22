@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //la raiz /, todo lo que venga despues de /auth/, todo lo que venga de /public/..
         //el simbolo que representa autorizar todo lo que venga despues de un endpoint es doble * 
         //le damos permiso con permitAll de lo contrario anyRequest tendra que autenticarse authenticated 
-        http.authorizeRequests().antMatchers("/","/auth/**","/public/**","/api/**","/css/**","/js/**").permitAll().anyRequest().authenticated()
+        http.authorizeRequests().antMatchers("/","/auth/**","/public/**","/api/**","/css/**","/js/**", "/static/**").permitAll().anyRequest().authenticated()
         //concatenamos con and
         .and()
             //utilizamos el formLogin de Spring y le damos un page con loginPage("/auth/login")

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts/base-layout::head">
+</head>
+
+<body>
+    <!-- <form id="loginform" method="POST"th:action="@{/auth/login-post}"  role="form">
+        <h1>Login</h1> -->
+        <!-- <div class="mb-3">
+            <label for="correo" class="form-label">Correo</label>
+            <input type="text" class="form-control" name="correo" placeholder="Tu correo" required />
+        </div> -->
+        <!-- <div class="mb-3">
+            <label for="nombre" class="form-label">Username</label>
+            <input type="text" class="form-control" name="nombre" placeholder="Tu nombre"  />
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" name="password" placeholder="Tu contraseña"  />
+        </div>
+        <input type="submit" class="btn btn-primary" value="Continuar"></input>
+    </form> -->
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div th:if="${param.error}" class="alert alert-danger mb-3">
+                    credenciales incorrectas
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Iniciar Sesion</h4>
+                    </div>
+                    <div class="card-body">
+                        <form id="loginform" method="POST" th:action="@{/auth/login-post}" role="form">
+                            <div class="row form-group">
+                                <label class="col-md-3">Usuario</label>
+                                <input type="text" name="username" class="form-control col-md-7" required autofocus="autofocus">
+                            </div>
+                            <div class="row form-group">
+                                <label class="col-md-3">Password</label>
+                                <input type="password" name="password" class="form-control col-md-7" required autofocus="autofocus">
+                            </div>
+                            <div class="row form-group">
+                                <input type="submit" class="btn btn-success btn-block col-md-7 offser-3" value="Continuar">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

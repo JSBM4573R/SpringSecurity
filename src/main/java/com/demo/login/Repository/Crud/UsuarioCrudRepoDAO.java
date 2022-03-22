@@ -13,4 +13,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UsuarioCrudRepoDAO extends JpaRepository<Usuario, Integer> {
     public Usuario findByCorreo (String correo);
+    public Usuario findByNombre(String nombre);
 }

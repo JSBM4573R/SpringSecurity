@@ -10,9 +10,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+/**
+ * @Service que utiliza los metodos creados en UsuarioRepositorioDAO
+ * ademas del @Bean creado en SecurityConfig BCryptPasswordEncoder
+ */
 @Service
 public class UsuarioServicio{
 
+    /**
+     * Inyecta e inicializa el Bean creado en SecurityConfig
+     * para encriptar la contraseña con BCryptPasswordEncoder
+     */
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
@@ -37,12 +45,21 @@ public class UsuarioServicio{
     }
 
     /**
-     * metodo que busca por el correo a un Usuario
+     * metodo que busca en la DB el correo del usuario
      * @param correo
-     * @return
+     * @return correo
      */
     public Usuario buscarCorreo(String correo) {
         return usuarioRepositorioDAO.findByCorreo(correo);
+    }
+
+    /**
+     * metodo que busca en la DB el nombre del usuario
+     * @param nombre
+     * @return nombre
+     */
+    public Usuario buscarNombre(String nombre) {
+        return usuarioRepositorioDAO.findByNombre(nombre);
     }
 
     /**

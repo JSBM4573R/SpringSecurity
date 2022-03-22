@@ -11,7 +11,7 @@ import com.demo.login.model.Usuario;
 
 /**
  * Repositorio que implementa la IUsuarioService el cual contiene un metodo creado
- * se genera el Overraid del metodo creado y se personaliza
+ * se genera el Override del metodo creado y se personaliza
  */
 @Repository
 public class UsuarioRepositorioDAO implements IUsuarioService {
@@ -19,7 +19,7 @@ public class UsuarioRepositorioDAO implements IUsuarioService {
     private UsuarioCrudRepoDAO usuarioCrudRepoDAO;
 
     /**
-     * metodo que permite traer na lista de todos los usuarios
+     * metodo que permite traer una lista de todos los usuarios
      * @return List<Usuario>
      */
     public List<Usuario> getAll(){
@@ -38,19 +38,29 @@ public class UsuarioRepositorioDAO implements IUsuarioService {
     /**
      * metodo que permite guardar una entidad en este caso el Usuario
      * @param usuario
-     * @return save()
+     * @return save(usuario)
      */
     public Usuario registrar(Usuario usuario) {
         return usuarioCrudRepoDAO.save(usuario);
     }
 
     /**
-     * Metodo que permite buscar por el correo 
+     * Metodo @Override que permite buscar en la DB el correo del usuario 
      * @param correo
      * @return correo_usuario
      */
     @Override
     public Usuario findByCorreo(String correo) {
         return usuarioCrudRepoDAO.findByCorreo(correo);
+    }
+
+    /**
+     * Metodo @Override que permite buscar en la DB el nombre del usuario 
+     * @param nombre
+     * @return nombre_usuario
+     */
+    @Override
+    public Usuario findByNombre(String nombre) {
+        return usuarioCrudRepoDAO.findByNombre(nombre);
     }
 }

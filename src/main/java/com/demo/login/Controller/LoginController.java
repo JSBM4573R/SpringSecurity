@@ -16,6 +16,14 @@ public class LoginController {
     @Autowired
     private UsuarioServicio usuarioServicio;
 
+    @GetMapping("/auth/login")
+    //metodo String porque retorno una vista
+    public String login(Model model) {
+        model.addAttribute("usuario", new Usuario());
+        //retorna una vista llamada login
+        return "login";
+    }
+
    @GetMapping("/auth/registro")
    //Creo un metodo que me permita desplegar un formulario con un Model
    public String registroForm(Model model) {
