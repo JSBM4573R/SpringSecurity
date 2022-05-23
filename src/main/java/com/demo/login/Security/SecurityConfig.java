@@ -43,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             //utilizamos el formLogin de Spring y le damos un page con loginPage("/auth/login")
             //si es correcto el login accedo al index privado con defaultSuccessUrl("/private/index", true)
             //si no es correcto el login entonces agregue al Path el ?error=true con failureForwardUrl("/auth/login?error=true")
-            .formLogin().loginPage("/auth/login").defaultSuccessUrl("/private/index", true).failureForwardUrl("/auth/login?error=true")
+            .formLogin().loginPage("/auth/login").defaultSuccessUrl("/private/index", true).failureUrl("/auth/login?error=true")
             //Spring lee el error y lo redireccionamos a un Path personalizado con el informe de error
             .loginProcessingUrl("/auth/login-post").permitAll()
         //concatenamos con and

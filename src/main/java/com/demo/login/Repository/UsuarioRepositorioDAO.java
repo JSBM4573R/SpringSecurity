@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.demo.login.Repository.Crud.IUsuarioService;
 import com.demo.login.Repository.Crud.UsuarioCrudRepoDAO;
@@ -31,8 +32,8 @@ public class UsuarioRepositorioDAO implements IUsuarioService {
      * @param id
      * @return Usuario
      */
-    public Usuario findById(Integer id) {
-        return usuarioCrudRepoDAO.getById(id);
+    public Optional<Usuario> findById(Integer id) {
+        return usuarioCrudRepoDAO.findById(id);
     }
 
     /**
@@ -63,4 +64,18 @@ public class UsuarioRepositorioDAO implements IUsuarioService {
     public Usuario findByNombre(String nombre) {
         return usuarioCrudRepoDAO.findByNombre(nombre);
     }
+
+    /**
+     * Metodo que valida si el correo existe en la DB.
+     * @param correo
+     * @return false si no existe y true si existe
+     */
+    public boolean existeCorreo(String correo) {
+        if(findByCorreo(correo) == null){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
 }

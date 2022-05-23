@@ -36,15 +36,6 @@ public class UsuarioServicio{
     }
 
     /**
-     * metodo que trae a un usuario por su id
-     * @param id
-     * @return
-     */
-    public Usuario buscarUsuario(Integer id) {
-        return usuarioRepositorioDAO.findById(id);
-    }
-
-    /**
      * metodo que busca en la DB el correo del usuario
      * @param correo
      * @return correo
@@ -63,19 +54,20 @@ public class UsuarioServicio{
     }
 
     /**
-     * guardar el usuario con la contraseña encriptada de BCryptPasswordEncoder
+     * Metodo que registra a un nuevo usuario generando una validacion para evitar id nulo y 
+     * otra validacion si el correo no existe en la DB. Si lo descrito anteriormente se cumple
+     * guarda el usuario con la contraseña encriptada de BCryptPasswordEncoder.
      * @param usuario
-     * @return save(usuario)
+     * @return registrar()
      */
     public Usuario registrarUsuario(Usuario usuario) {
-        if (usuarioRepositorioDAO.findById(usuario.getId()) != null) {
-            //al objeto que recibe setea la contraseña y la encripta
-            usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
-            //guarda el objeto con la contraseña encriptada
-            return usuarioRepositorioDAO.registrar(usuario);
-        } else {
-            return usuario;
+        if (usuario.getId() == null) {
+            if(usuarioRepositorioDAO.existeCorreo(usuario.getCorreo()) == false) {
+                usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+                return usuarioRepositorioDAO.registrar(usuario);
+            }
         }
+        return new Usuario();
     }
 }
     

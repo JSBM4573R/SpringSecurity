@@ -27,16 +27,16 @@ public class UserDetails implements UserDetailsService {
      * ademas lanza una excepcion su el correo no fue encontrado con throw new UsernameNotFoundException
      */
     @Override
-    public org.springframework.security.core.userdetails.UserDetails loadUserByUsername(String nombre) throws UsernameNotFoundException {
-        //Declaro un objeto de tipo usuario en el cual almaceno el metodo  buscarNombre(nombreUsuario)
-        Usuario usuario = usuarioCrudRepoDAO.findByNombre(nombre);
+    public org.springframework.security.core.userdetails.UserDetails loadUserByUsername(String correo) throws UsernameNotFoundException {
+        //Declaro un objeto de tipo usuario en el cual almaceno el metodo findByCorreo(correo)
+        Usuario usuario = usuarioCrudRepoDAO.findByCorreo(correo);
         //Declarar un objeto builder de tipo UserBuilder = null
         UserBuilder builder = null;
 
         //si el usuario es diferente a null es decir si existe entonces
         if(usuario != null) {
-            //builder = al nombre de usuario ingresado
-            builder = User.withUsername(nombre);
+            //builder = al correo del usuario ingresado
+            builder = User.withUsername(correo);
             //habilitamos el builder con el metodo .disabled(false)
             builder.disabled(false);
             //le pasamos el password del usuario 

@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -18,11 +19,12 @@ import lombok.RequiredArgsConstructor;
 @Entity
 @Data
 @RequiredArgsConstructor
+@AllArgsConstructor
 @Table(name = "usuarios")
 public class Usuario implements Serializable{
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     @Column(name = "nombre_usuario", nullable = false, length = 45)
     private String nombre;
     @Column(name = "correo_usuario", nullable = false, length = 50)

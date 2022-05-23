@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layouts/base-layout::head">
   <!-- Required meta tags -->
@@ -9,7 +8,7 @@
   <link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body style="max-width: 450px; margin: auto; margin-top: 150px;">
-    <form th:action="@{/auth/registro}"th:object="${usuario}" method="POST">
+    <form th:action="@{/auth/registro}" th:object="${usuario}" method="POST">
         <div class="mb-3">
           <label for="nombre" class="form-label">Nombre</label>
           <input type="text" class="form-control" aria-describedby="emailHelp" th:field="*{nombre}" required autofocus="autofocus">
@@ -21,9 +20,9 @@
           <input type="email" class="form-control" th:field="*{correo}" required autofocus="autofocus">
         </div>
         <div class="mb-3">
-            <label for="password" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" th:field="*{password}" required autofocus="autofocus">
-          </div>
+          <label for="password" class="form-label">Contraseña</label>
+          <input type="password" class="form-control" th:field="*{password}" required autofocus="autofocus">
+        </div>
         <input type="submit" class="btn btn-primary" value="Continuar"></input>
     </form>
 </body>

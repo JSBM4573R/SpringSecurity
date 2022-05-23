@@ -29,12 +29,12 @@ public class PrivateController {
     public String index(Authentication auth, HttpSession session) {
         //creo una variable nombre que va a contener el nombre del usuario
         //por medio de Authentication
-        String nombre = auth.getName();
+        String correo = auth.getName();
 
         //si la sesion es igual a nula es decir no hay ninguna sesion activa entonces
         if(session.getAttribute("usuario") == null) {
-            //Creo una variable usuario del objeto usuario que va a contener el nombre del usuario
-            Usuario usuario = usuarioServicio.buscarNombre(nombre);
+            //Creo una variable usuario del objeto usuario que va a contener el correo del usuario
+            Usuario usuario = usuarioServicio.buscarCorreo(correo);
             //evito que me traiga el password lo seteo como null para garantizar seguridad
             usuario.setPassword(null);
             //al objeto session le cambio el atributo al nuevo usuario ingresado
