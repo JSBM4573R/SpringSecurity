@@ -7,10 +7,12 @@
 html {
     height:100%;
     Width:100%;
+    scroll-behaviour: smooth; 
 }
 
 body {
-    max-width: 850px;
+    min-height: 100%;
+    max-width: 80%;
     margin: auto;
     display: flex;
     align-items: center;
